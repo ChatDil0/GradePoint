@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import "./Body.css";
 
 const Body = () => {
   const [subjects, setSubjects] = useState([{ grade: '', credit: '' }]);
@@ -92,41 +93,49 @@ const Body = () => {
   };
 
   return (
-    <div>
-      {subjects.map((subject, index) => (
-        <div key={index}>
-          <select
-            value={subject.grade}
-            onChange={e => handleGradeChange(index, e.target.value)}
-          >
-            <option value="">Select Grade</option>
-            {gradeOptions.map(gradeOption => (
-              <option key={gradeOption} value={gradeOption}>
-                {gradeOption}
-              </option>
+    <div className='body_container'>
+      <div className='container'>
+        <div className='content'>
+          <div className='input_field'>
+            {subjects.map((subject, index) => (
+              <div key={index}>
+                <select
+                  value={subject.grade}
+                  onChange={e => handleGradeChange(index, e.target.value)}
+                >
+                  <option value="">Select Grade</option>
+                  {gradeOptions.map(gradeOption => (
+                    <option key={gradeOption} value={gradeOption}>
+                      {gradeOption}
+                    </option>
+                  ))}
+                </select>
+                <input
+                  type="number"
+                  placeholder="Credit"
+                  value={subject.credit}
+                  onChange={e => handleCreditChange(index, e.target.value)}
+                />
+              </div>
             ))}
-          </select>
-          <input
-            type="number"
-            placeholder="Credit"
-            value={subject.credit}
-            onChange={e => handleCreditChange(index, e.target.value)}
-          />
+            <button onClick={addSubject}>Add Subject</button>
+          </div>
+          <div className='btn_field'>
+            <button onClick={calculateGPA}>Calculate GPA</button>
+            <button onClick={resetForm}>Reset</button>
+          </div>
         </div>
-      ))}
-      <button onClick={addSubject}>Add Subject</button>
-      <button onClick={calculateGPA}>Calculate GPA</button>
-      <button onClick={resetForm}>Reset</button>
-      {gpa > 0 && (
-        <p>
-          Your GPA: {gpa.toFixed(2)}
-        </p>
-      )}
-      {gpa > 0 && (
-        <p>
-          Class: {classRank}
-        </p>
-      )}
+        {gpa > 0 && (
+          <p className='out_put gpa'>
+            Your GPA: {gpa.toFixed(2)}
+          </p>
+        )}
+        {gpa > 0 && (
+          <p className='out_put deg_class'>
+            Class: {classRank}
+          </p>
+        )}
+      </div>
     </div>
   );
 };

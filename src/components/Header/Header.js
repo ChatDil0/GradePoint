@@ -3,8 +3,10 @@ import "./Header.css";
 
 const Header = () => {
   return (
-    <div>Grade Point</div>
+    <header className="header">
+        <a href=" " className="head">GradeZilla</a>
+    </header>
   )
 }
 
-export default Header
+export default Header;

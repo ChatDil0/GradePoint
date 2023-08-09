@@ -1,0 +1,11 @@
+.body_container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 85vh;
+  }
+  
+  .out_put{
+    color: white;
+    font-size: var(--small-font-size);
+  }
