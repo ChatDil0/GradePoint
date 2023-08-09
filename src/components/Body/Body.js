@@ -5,7 +5,7 @@ const Body = () => {
   const [gpa, setGpa] = useState(0);
   const [classRank, setClassRank] = useState('');
 
-  const gradeOptions = ['A', 'B', 'C', 'D', 'F'];
+  const gradeOptions = ['A+', 'A', 'A-','B+', 'B', 'B-','C+', 'C', 'C-','D+', 'D', 'E',];
 
   const handleGradeChange = (index, grade) => {
     const updatedSubjects = [...subjects];
@@ -41,14 +41,16 @@ const Body = () => {
   };
 
   const determineClassRank = gpa => {
-    if (gpa >= 3.5) {
-      setClassRank('High Distinction');
-    } else if (gpa >= 3.0) {
-      setClassRank('Distinction');
-    } else if (gpa >= 2.0) {
-      setClassRank('Average');
+    if (gpa >= 3.70) {
+      setClassRank('First Class');
+    } else if (gpa >= 3.30) {
+      setClassRank('Second Upper');
+    } else if (gpa >= 3.00) {
+      setClassRank('Second Lower');
+    } else if (gpa >= 2.00) {
+      setClassRank('General');
     } else {
-      setClassRank('Below Average');
+      setClassRank('You fool');
     }
   };
 
@@ -60,18 +62,32 @@ const Body = () => {
 
   const getGradePoints = grade => {
     switch (grade) {
+      case 'A+':
+        return 4.00;
       case 'A':
-        return 4.0;
+        return 4.00;
+      case 'A-':
+        return 3.70;
+      case 'B+':
+        return 3.30;
       case 'B':
-        return 3.0;
+        return 3.00;
+      case 'B-':
+        return 2.70;
+      case 'C+':
+        return 2.30;
       case 'C':
-        return 2.0;
+        return 2.00;
+      case 'C-':
+        return 1.70;
+      case 'D+':
+        return 1.30;
       case 'D':
-        return 1.0;
-      case 'F':
-        return 0.0;
+        return 1.00;
+      case 'E':
+        return 0.00;
       default:
-        return 0.0;
+        return 0.00;
     }
   };
 
@@ -103,7 +119,12 @@ const Body = () => {
       <button onClick={resetForm}>Reset</button>
       {gpa > 0 && (
         <p>
-          Your GPA: {gpa.toFixed(2)} (Class: {classRank})
+          Your GPA: {gpa.toFixed(2)}
+        </p>
+      )}
+      {gpa > 0 && (
+        <p>
+          Class: {classRank}
         </p>
       )}
     </div>
