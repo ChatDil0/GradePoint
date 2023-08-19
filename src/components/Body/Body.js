@@ -96,45 +96,57 @@ const Body = () => {
     <div className='body_container'>
       <div className='container'>
         <div className='content'>
-          <div className='input_field'>
-            {subjects.map((subject, index) => (
-              <div key={index}>
-                <select
-                  value={subject.grade}
-                  onChange={e => handleGradeChange(index, e.target.value)}
-                >
-                  <option value="">Select Grade</option>
-                  {gradeOptions.map(gradeOption => (
-                    <option key={gradeOption} value={gradeOption}>
-                      {gradeOption}
-                    </option>
-                  ))}
-                </select>
-                <input
-                  type="number"
-                  placeholder="Credit"
-                  value={subject.credit}
-                  onChange={e => handleCreditChange(index, e.target.value)}
-                />
+          <div className='input_box'>
+            <div className='input_container'>
+              <div className='input_field'>
+                {subjects.map((subject, index) => (
+                  <div className='input_area' key={index}>
+                    <select className='grade_field_box'
+                      value={subject.grade}
+                      onChange={e => handleGradeChange(index, e.target.value)}
+                    >
+                      <option value="">Grade</option>
+                      {gradeOptions.map(gradeOption => (
+                        <option key={gradeOption} value={gradeOption}>
+                          {gradeOption}
+                        </option>
+                      ))}
+                    </select>
+                    <input className='input_field_box'
+                      type="number"
+                      placeholder="Credit"
+                      value={subject.credit}
+                      onChange={e => handleCreditChange(index, e.target.value)}
+                    />
+                  </div>
+                ))}
               </div>
-            ))}
-            <button onClick={addSubject}>Add Subject</button>
+            </div>
           </div>
-          <div className='btn_field'>
-            <button onClick={calculateGPA}>Calculate GPA</button>
-            <button onClick={resetForm}>Reset</button>
+          <div className='btn-container'>
+            <div>
+              <button className='btn_field add_btn' onClick={addSubject}>Add Subject</button>
+              <div>
+                <button className='btn_field gpa_btn' onClick={calculateGPA}>Calculate GPA</button>
+                <button className='btn_field' onClick={resetForm}>Reset</button>
+              </div>
+            </div>
           </div>
         </div>
-        {gpa > 0 && (
-          <p className='out_put gpa'>
-            Your GPA: {gpa.toFixed(2)}
-          </p>
-        )}
-        {gpa > 0 && (
-          <p className='out_put deg_class'>
-            Class: {classRank}
-          </p>
-        )}
+        <div className='output_field'>
+          <div>
+            {gpa > 0 && (
+              <p className='out_put gpa'>
+                Your GPA: {gpa.toFixed(2)}
+              </p>
+            )}
+            {gpa > 0 && (
+              <p className='out_put deg_class'>
+                Class: {classRank}
+              </p>
+            )}
+          </div>
+        </div>
       </div>
     </div>
   );
